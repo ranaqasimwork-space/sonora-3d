@@ -5,46 +5,11 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import HeroScene from "@/components/HeroScene"
 import StorySection from "@/components/StorySection"
+import TechnologySection from "@/components/TechnologySection"
 import { PersistentProductCanvas, AnimState } from "@/components/PersistentProductCanvas"
 import SiteNav from "@/components/SiteNav"
 
 gsap.registerPlugin(ScrollTrigger)
-
-const techCards = [
-  {
-    index: "T1",
-    title: "Adaptive Noise Cancellation",
-    text: "Eight microphones map your environment 48,000 times a second, cancelling up to 42 dB of ambient noise in real time.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M5 12a7 7 0 0 1 14 0M8 12a4 4 0 0 1 8 0M2 12a10 10 0 0 1 20 0" />
-      </svg>
-    ),
-  },
-  {
-    index: "T2",
-    title: "Spatial Audio",
-    text: "Dynamic head tracking anchors sound in space. A 360° stage that stays fixed to your screen, not your ears.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <circle cx="12" cy="12" r="9" />
-        <ellipse cx="12" cy="12" rx="4" ry="9" />
-        <path d="M3 12h18" />
-      </svg>
-    ),
-  },
-  {
-    index: "T3",
-    title: "Hi-Res Lossless",
-    text: "A USB-C connection streams 24-bit / 96 kHz audio with zero compression — studio masters, exactly as recorded.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
-        <path d="M3 12h2l2-7 3 14 3-10 2 5 2-3h4" />
-      </svg>
-    ),
-  },
-]
 
 const specs = [
   { key: "Driver", val: "40 mm beryllium-coated dynamic" },
@@ -67,6 +32,12 @@ export default function Home() {
     rotY: -0.6,
     rotZ: 0,
     scale: 1,
+    verticalPhase: 0,
+    explode: 0,
+    spatialWave: 0,
+    camZoom: 0,
+    camFocusUSBC: 0,
+    usbcLight: 0,
   })
 
   const heroRef = useRef<HTMLElement>(null)
@@ -133,35 +104,7 @@ export default function Home() {
 
       <StorySection animRef={animRef} />
 
-      <section className="tech" id="technology">
-        <div className="container">
-          <div className="tech__head">
-            <div>
-              <span className="eyebrow">Technology</span>
-              <h2 className="section-title gradient-text">
-                Engineered in the details you don't see.
-              </h2>
-            </div>
-            <p>
-              A stack of proprietary systems working in concert —
-              so all you perceive is the music, exactly as intended.
-            </p>
-          </div>
-
-          <div className="tech__cards">
-            {techCards.map((card) => (
-              <div className="tech-card" key={card.index}>
-                <span className="tech-card__index">{card.index}</span>
-                <div className="tech-card__icon">{card.icon}</div>
-                <div>
-                  <h3 className="tech-card__title">{card.title}</h3>
-                  <p className="tech-card__text">{card.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TechnologySection animRef={animRef} />
 
       <section className="specs" id="specs">
         <div className="container">
